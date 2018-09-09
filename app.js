@@ -83,7 +83,7 @@ app.use(passport.session());
 });
 
 
-app.use('/index',routes);
+app.use('/',routes);
 app.use('/users',users);
 
 
