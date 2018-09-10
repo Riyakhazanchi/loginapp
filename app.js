@@ -29,7 +29,7 @@ var app=express();
 
 //view engine
 app.set('views',path.join(__dirname,'/views'));
-app.engine('handlebars',exphbs({defaultlayout:'layout.handlebars'}));
+app.engine('handlebars',exphbs({defaultlayout:'layout'}));
 app.set('view engine','handlebars');
 
 app.use(bodyParser.json());
