@@ -34,6 +34,7 @@ defaultLayout: 'layout',
 layoutsDir: path.join(__dirname, '/views/layouts'),
 partialsDir: path.join(__dirname, '/views/partials')
 }));
+
 app.set('view engine','handlebars');
 
 app.use(bodyParser.json());
