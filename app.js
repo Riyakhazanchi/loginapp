@@ -8,6 +8,7 @@ var flash=require('connect-flash');
 var session=require('express-session');
 var passport=require('passport');
 var LocalStrategy=require('passport-local');
+
 var mongo=require('mongodb');
 var mongoose=require('mongoose');
 mongoose.connect('mongodb://nodejs1:nodejs1@ds135196.mlab.com:35196/node', { useNewUrlParser: true });
@@ -21,7 +22,7 @@ db.once('open', function() {
 });
 
 
-var routes= require('./routes/index');
+var index= require('./routes/index');
 var users=require('./routes/users');
 
 //init app
@@ -31,8 +32,7 @@ var app=express();
 app.set('views',path.join(__dirname,'/views'));
 app.engine('handlebars', exphbs({
 defaultLayout: 'layout',
-layoutsDir: path.join(__dirname, '/views/layouts'),
-partialsDir: path.join(__dirname, '/views/partials')
+layoutsDir: path.join(__dirname, '/views/layouts')
 }));
 
 app.set('view engine','handlebars');
@@ -80,15 +80,10 @@ app.use(passport.session());
  app.use(flash());
 
 //global var
- app.use(function(req, res, next){
-    res.locals.success_messages = req.flash('success_messages');
-    res.locals.error_messages = req.flash('error_messages');
-    res.locals.error=req.flash('error');
-    next();
-});
+ 
 
 
-app.use('/',routes);
+app.use('/',index);
 app.use('/users',users);
 
 
